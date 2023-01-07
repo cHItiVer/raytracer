@@ -1,7 +1,7 @@
 #include <math.h>
 #include <stdlib.h>
 #include <stdio.h>
-#include "lodepng.h"
+#include "lodepng/lodepng.h"
 
 typedef struct vector {
 	double x, y, z;
@@ -45,6 +45,7 @@ Vector mul(Vector a, double k)
 void update(Ray *ray, double timestep)
 {
 	ray->velocity = add(ray->velocity, mul(ray->acceleration, timestep));
+	ray->velocity = mul(ray->velocity, 1 / sqrt(pow(ray->velocity.x, 2) + pow(ray->velocity.y, 2) + pow(ray->velocity.z, 2)));
 	ray->position = add(ray->position, mul(ray->velocity, timestep));
 	ray->time += timestep;
 }
@@ -221,15 +222,15 @@ int main(int argc, char *argv[])
 	Camera camera = {{0, 0, 2}, M_PI / 2, 0, M_PI / 1, 500, 500, &floor};
 	unsigned char *image;
 	char filename[20];
-	for(int i = 0; i < 100; i += 1)
+	for(int i = 0; i < 1; i += 1)
 	{
-		camera.position.x += 0.1;
 		image = render(camera, 0.01, 100);
 		sprintf(filename, "result_%04d.png", i);
 		unsigned int error = lodepng_encode32_file(filename, image, camera.width, camera.height);
 		if(error)
 			printf("Error %u: %s\n", error, lodepng_error_text(error));
 		free(image);
+		camera.position.x += 0.1;
 	}
 	return 0;
 }
