@@ -1,0 +1,26 @@
+{
+	"files.associations": {
+		"plans": "plaintext",
+		"functional": "cpp",
+		"__functional_03": "cpp",
+		"tuple": "cpp",
+		"array": "cpp",
+		"utility": "cpp",
+		"__node_handle": "cpp",
+		"*.tcc": "cpp",
+		"memory": "cpp",
+		"istream": "cpp",
+		"__functional_base": "cpp",
+		"locale": "cpp",
+		"cmath": "cpp",
+		"__locale": "cpp",
+		"random": "cpp",
+		"algorithm": "cpp",
+		"ios": "cpp",
+		"iostream": "cpp",
+		"string_view": "cpp",
+		"__string": "cpp",
+		"string": "cpp",
+		"ostream": "cpp"
+	}
+}
